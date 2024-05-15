@@ -13,7 +13,9 @@ runs:
         cache: 'yarn'
 
     - name: Set environment variables
+      shell: bash
       run: mv .env.example .env
 
     - name: Install dependencies
+      shell: bash
       run: yarn install --frozen-lockfile --prefer-offline
