@@ -2,24 +2,23 @@ name: Run E2E tests
 
 on: workflow_call
 
-jobs:
-  e2e:
-    timeout-minutes: 60
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+runs:
+  using: 'composite'
+  timeout-minutes: 60
+  steps:
+    - uses: actions/checkout@v4
 
-      - uses: ./github/actions/install.yml
+    - uses: ./github/actions/install.yml
 
-      - name: Install Playwright Browsers
-        run: yarn playwright install --with-deps
+    - name: Install Playwright Browsers
+      run: yarn playwright install --with-deps
 
-      - name: Run Playwright tests
-        run: yarn playwright test
+    - name: Run Playwright tests
+      run: yarn playwright test
 
-      - uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: playwright-report
-          path: playwright-report/
-          retention-days: 30
+    - uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: playwright-report
+        path: playwright-report/
+        retention-days: 30
