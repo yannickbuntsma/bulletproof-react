@@ -2,19 +2,18 @@ name: PR workflow
 
 on: workflow_call
 
-jobs:
-  install:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+runs:
+  using: 'composite'
+  steps:
+    - uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v4
-        with:
-          node-version: lts/*
-          cache: 'yarn'
+    - uses: actions/setup-node@v4
+      with:
+        node-version: lts/*
+        cache: 'yarn'
 
-      - name: Set environment variables
-        run: mv .env.example .env
+    - name: Set environment variables
+      run: mv .env.example .env
 
-      - name: Install dependencies
-        run: yarn install --frozen-lockfile --prefer-offline
+    - name: Install dependencies
+      run: yarn install --frozen-lockfile --prefer-offline
