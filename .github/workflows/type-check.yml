@@ -1,0 +1,15 @@
+name: Check types
+
+on: workflow_call
+
+jobs:
+  check-types:
+    name: Preparation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: ./github/workflows/setup-node.yml
+
+      - name: Check types
+        run: yarn check-types

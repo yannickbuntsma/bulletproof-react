@@ -1,0 +1,15 @@
+name: Run unit tests
+
+on: workflow_call
+
+jobs:
+  check-types:
+    name: Preparation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: ./github/workflows/setup-node.yml
+
+      - name: Run the unit tests
+        run: yarn test

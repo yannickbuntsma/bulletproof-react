@@ -8,17 +8,25 @@ on:
       - 'docs/**'
 
 jobs:
-  install:
+  prepare:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
-      - uses: ./.github/actions/install
+      - uses: ./.github/workflows/preparation.yml
 
-      - uses: ./.github/actions/lint
+  type-check:
+    runs-on: ubuntu-latest
+    needs: prepare
+    steps:
+      - uses: actions/checkout@v4
 
-      - uses: ./.github/actions/type-check
+      - uses: ./.github/workflows/type-check.yml
 
-      - uses: ./.github/actions/test
+  unit-tests:
+    runs-on: ubuntu-latest
+    needs: prepare
+    steps:
+      - uses: actions/checkout@v4
 
-      - uses: ./.github/actions/build
+      - uses: ./.github/workflows/type-check.yml
