@@ -8,7 +8,7 @@ runs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: ./github/actions/install.yml
+      - uses: ./github/actions/install
 
       - name: Build application
         shell: bash

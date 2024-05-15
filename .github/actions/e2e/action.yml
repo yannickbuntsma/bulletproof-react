@@ -8,7 +8,7 @@ runs:
   steps:
     - uses: actions/checkout@v4
 
-    - uses: ./github/actions/install.yml
+    - uses: ./github/actions/install
 
     - name: Install Playwright Browsers
       run: yarn playwright install --with-deps
