@@ -9,24 +9,12 @@ on:
 
 jobs:
   prepare:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: ./.github/workflows/preparation.yml
+    uses: ./.github/workflows/preparation.yml
 
   type-check:
-    runs-on: ubuntu-latest
     needs: prepare
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: ./.github/workflows/type-check.yml
+    uses: ./.github/workflows/type-check.yml
 
   unit-tests:
-    runs-on: ubuntu-latest
     needs: prepare
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: ./.github/workflows/type-check.yml
+    uses: ./.github/workflows/unit-tests.yml
