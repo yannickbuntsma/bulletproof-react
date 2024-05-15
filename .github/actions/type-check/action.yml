@@ -1,0 +1,14 @@
+name: Install modules
+
+on: workflow_call
+
+jobs:
+  type-checking:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: ./github/actions/install.yml
+
+      - name: Check types
+        run: yarn check-types

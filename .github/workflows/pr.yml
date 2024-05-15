@@ -1,0 +1,24 @@
+name: PR workflow
+
+on:
+  pull_request:
+    branches: [master]
+    paths-ignore:
+      - 'README.md'
+      - 'docs/**'
+
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: ./.github/actions/install/action.yml
+
+      - uses: ./.github/actions/lint/action.yml
+
+      - uses: ./.github/actions/type-check.yml
+
+      - uses: ./.github/actions/test/action.yml
+
+      - uses: ./.github/actions/build/action.yml
